@@ -1,0 +1,23 @@
+{
+  "name": "9_for_9",
+  "version": "1.0.0",
+  "description": "powerlifting lightbox",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hinsonan/9_for_9.git"
+  },
+  "author": "Andrew Hinson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hinsonan/9_for_9/issues"
+  },
+  "homepage": "https://github.com/hinsonan/9_for_9#readme",
+  "devDependencies": {
+    "electron": "^9.1.2"
+  }
+}

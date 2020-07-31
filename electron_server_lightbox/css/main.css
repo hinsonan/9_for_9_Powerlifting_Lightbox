@@ -1,0 +1,20 @@
+html, body {margin:0;padding:0;height:100%;overflow: hidden;}
+
+
+.dot {
+    height: 10vw;
+    width: 15vh;
+    background-color: #919191;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+.container{
+    display: grid;
+    height: 70%;
+    grid-template-columns: auto auto auto;
+    align-content: center;
+    vertical-align: middle;
+}
