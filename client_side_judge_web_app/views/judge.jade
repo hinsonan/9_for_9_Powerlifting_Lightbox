@@ -6,7 +6,7 @@ block content
     script.
         const socket = new WebSocket("ws://localhost:1080");
         var is_good_lift = function(value) {
-            socket.send(value)
+            socket.send(JSON.stringify({is_good_from_judge_id:Boolean(value)}))
         }
         // Connection opened
         socket.addEventListener('open', function (event) {

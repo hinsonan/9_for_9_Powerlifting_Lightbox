@@ -19,11 +19,10 @@ function createWindow () {
 
   judge_ws.on('connection', function (w) {  
     w.on( 'message' , function (incoming_data)  {
-        var is_good = (incoming_data === 'true')
-        console.log(is_good)
-        lightbox_ws.on('connection', function (w) {
-          w.send('Hello from port 1070')
-        })
+      console.log(incoming_data)
+      lightbox_ws.on('connection', function (w) {
+        w.send(incoming_data)
+      })
     })  
     w.on('close', function() { 
          console.log("Closed") 
