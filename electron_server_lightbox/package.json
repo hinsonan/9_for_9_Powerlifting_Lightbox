@@ -19,5 +19,8 @@
   "homepage": "https://github.com/hinsonan/9_for_9#readme",
   "devDependencies": {
     "electron": "^9.1.2"
+  },
+  "dependencies": {
+    "ws": "^7.3.1"
   }
 }

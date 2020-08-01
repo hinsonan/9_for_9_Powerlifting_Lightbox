@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1 Judge #{judge_id}
+  
+    script.
+        const socket = new WebSocket("ws://localhost:1080");
+        var is_good_lift = function(value) {
+            socket.send(value)
+        }
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            socket.send('Hello Server!');
+        });
+
+        socket.addEventListener('message', function (data) {
+            console.log(data);
+        });
+
+
+  div(class='btn_container')
+    button(class='good_lift lift_btn' onclick='is_good_lift("true")') Lift is Good
+
+    button(class='bad_lift lift_btn' onclick='is_good_lift("false")') Lift is Bad

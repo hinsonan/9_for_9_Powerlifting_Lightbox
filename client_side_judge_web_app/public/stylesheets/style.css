@@ -1,6 +1,28 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body {margin:0;padding:0;height:100%;}
+
+h1{
+  text-align: center;
+
+}
+
+.btn_container{
+  text-align: center;
+  display: grid;
+  vertical-align: center;
+}
+
+.lift_btn{
+  padding: 10px;
+  grid-column: 1;
+  width: 50%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.bad_lift{
+  margin-top: 20px;
 }
 
 a {

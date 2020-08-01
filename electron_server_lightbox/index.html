@@ -15,4 +15,14 @@
         <span class="dot"></span>
     </div>
   </body>
+  <script>
+    const socket = new WebSocket("ws://localhost:1070");
+    // Connection opened
+    socket.addEventListener('open', function (event) {
+            socket.send('Recieved from port 1070');
+    });
+    socket.addEventListener('message', function (data) {
+      console.log(data);
+    });
+  </script>
 </html>

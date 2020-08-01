@@ -1,4 +1,8 @@
 const { app, BrowserWindow } = require('electron')
+const WebSocket = require("ws")
+
+const judge_ws = new WebSocket.Server({port:1080})
+const lightbox_ws = new WebSocket.Server({port:1070})
 
 function createWindow () {
   // Create the browser window.
@@ -12,6 +16,20 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadFile('index.html')
+
+  judge_ws.on('connection', function (w) {  
+    w.on( 'message' , function (incoming_data)  {
+        var is_good = (incoming_data === 'true')
+        console.log(is_good)
+        lightbox_ws.on('connection', function (w) {
+          w.send('Hello from port 1070')
+        })
+    })  
+    w.on('close', function() { 
+         console.log("Closed") 
+    })    
+    w.send("Hello from port 1080")
+  })
 
   // Open the DevTools.
   win.webContents.openDevTools()
