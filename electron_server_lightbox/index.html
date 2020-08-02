@@ -18,8 +18,8 @@
       const ipcRenderer = require('electron').ipcRenderer;
       ipcRenderer.on('incoming_data', function(event, incoming_data) { 
         console.log(event)
-        console.log(incoming_data);
-        if (incoming_data['is_good_from_judge_id']){
+        dic = JSON.parse(incoming_data);
+        if (dic.is_good_from_judge){
           document.getElementById('judge2').style.backgroundColor = 'white'
         } else {
           document.getElementById('judge2').style.backgroundColor = 'red'

@@ -1,12 +1,19 @@
 extends layout
 
 block content
-  h1 Judge #{judge_id}
+  h1(id='judge_id') Judge #{judge_id}
   
     script.
         const socket = new WebSocket("ws://localhost:1080");
+        function parse_for_id(){
+            var text = document.getElementById('judge_id').textContent;
+            split_strings = text.split(' ')
+            return split_strings[1]
+        }
         var is_good_lift = function(value) {
-            socket.send(JSON.stringify({is_good_from_judge_id:Boolean(value)}))
+            var is_good = (value === 'true');
+            var id = parse_for_id()
+            socket.send(JSON.stringify({judge_id: id, is_good_from_judge: is_good}));
         }
         // Connection opened
         //- socket.addEventListener('open', function (event) {
