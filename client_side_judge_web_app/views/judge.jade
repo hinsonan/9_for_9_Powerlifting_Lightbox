@@ -8,9 +8,10 @@ block content
         function parse_for_id(){
             var text = document.getElementById('judge_id').textContent;
             split_strings = text.split(' ')
-            return split_strings[1]
+            return split_strings[1][0]
         }
         var is_good_lift = function(value) {
+            console.log('here')
             var is_good = (value === 'true');
             var id = parse_for_id()
             socket.send(JSON.stringify({judge_id: id, is_good_from_judge: is_good}));

@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   </head>
   <body>
-    <h1>Test</h1>
+    <h1>9 For 9 Light Box</h1>
     <div class="container">
         <span id="judge1" class="dot"></span>
         <span id="judge2" class="dot"></span>
@@ -19,10 +19,11 @@
       ipcRenderer.on('incoming_data', function(event, incoming_data) { 
         console.log(event)
         dic = JSON.parse(incoming_data);
+        console.log(dic.judge_id)
         if (dic.is_good_from_judge){
-          document.getElementById('judge2').style.backgroundColor = 'white'
+          document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'white'
         } else {
-          document.getElementById('judge2').style.backgroundColor = 'red'
+          document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'red'
         }
         //Display data
       });

@@ -18,3 +18,11 @@ html, body {margin:0;padding:0;height:100%;overflow: hidden;}
     align-content: center;
     vertical-align: middle;
 }
+
+h1{
+  color: white;
+}
+
+body{
+  background-color: #2e0110;
+}
