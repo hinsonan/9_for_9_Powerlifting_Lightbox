@@ -1,8 +1,8 @@
 const { app, BrowserWindow } = require('electron')
 const WebSocket = require("ws")
+var ipcMain = require('electron').ipcMain;
 
 const judge_ws = new WebSocket.Server({port:1080})
-const lightbox_ws = new WebSocket.Server({port:1070})
 
 function createWindow () {
   // Create the browser window.
@@ -16,13 +16,11 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadFile('index.html')
-
+  
   judge_ws.on('connection', function (w) {  
     w.on( 'message' , function (incoming_data)  {
       console.log(incoming_data)
-      lightbox_ws.on('connection', function (w) {
-        w.send(incoming_data)
-      })
+      win.webContents.send('incoming_data' , incoming_data);
     })  
     w.on('close', function() { 
          console.log("Closed") 

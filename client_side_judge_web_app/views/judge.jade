@@ -9,9 +9,9 @@ block content
             socket.send(JSON.stringify({is_good_from_judge_id:Boolean(value)}))
         }
         // Connection opened
-        socket.addEventListener('open', function (event) {
-            socket.send('Hello Server!');
-        });
+        //- socket.addEventListener('open', function (event) {
+        //-     socket.send('Hello Server!');
+        //- });
 
         socket.addEventListener('message', function (data) {
             console.log(data);

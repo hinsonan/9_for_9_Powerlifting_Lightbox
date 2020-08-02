@@ -14,24 +14,18 @@
         <span id="judge2" class="dot"></span>
         <span id="judge3" class="dot"></span>
     </div>
+    <script>
+      const ipcRenderer = require('electron').ipcRenderer;
+      ipcRenderer.on('incoming_data', function(event, incoming_data) { 
+        console.log(event)
+        console.log(incoming_data);
+        if (incoming_data['is_good_from_judge_id']){
+          document.getElementById('judge2').style.backgroundColor = 'white'
+        } else {
+          document.getElementById('judge2').style.backgroundColor = 'red'
+        }
+        //Display data
+      });
+    </script>
   </body>
-  <script>
-    const socket = new WebSocket("ws://localhost:1070");
-    // Connection opened
-    socket.addEventListener('open', function (event) {
-            socket.send('Recieved from port 1070');
-    });
-    socket.addEventListener('message', function (recieved_judge_message) {
-      dic = JSON.parse(recieved_judge_message.data)
-      var key = Object.keys(dic)[0];
-      var x = document.getElementById("judge2");
-      x.style.backgroundColor = "red"; 
-      var ipc = require('electron').ipcRenderer;
-      ipc.on('key-pressed-q', (e) => {
-        console.log(e);
-        var element =  x ;
-        element.style.backgroundColor = "yellow";
-    });
-    });
-  </script>
 </html>
