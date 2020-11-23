@@ -1,8 +1,8 @@
-const { app, BrowserWindow } = require('electron')
-const WebSocket = require("ws")
+const { app, BrowserWindow } = require('electron');
+const WebSocket = require("ws");
 var ipcMain = require('electron').ipcMain;
 
-const judge_ws = new WebSocket.Server({port:1080})
+const judge_ws = new WebSocket.Server({port:1080});
 
 function createWindow () {
   // Create the browser window.
