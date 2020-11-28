@@ -15,17 +15,33 @@
         <span id="judge3" class="dot"></span>
     </div>
     <script>
+      // sleep function
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      var sent_commands = {'judge1': false, 'judge2': false, 'judge3': false}
       const ipcRenderer = require('electron').ipcRenderer;
       ipcRenderer.on('incoming_data', function(event, incoming_data) { 
-        console.log(event)
+        console.log(event);
         dic = JSON.parse(incoming_data);
-        console.log(dic.judge_id)
+        console.log(dic.judge_id);
+        sent_commands['judge' + dic.judge_id] = true;
         if (dic.is_good_from_judge){
-          document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'white'
+          document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'white';
         } else {
-          document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'red'
+          document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'red';
         }
-        //Display data
+        // check if all judges have sent their lights
+        if (sent_commands['judge1'] && sent_commands['judge2'] && sent_commands['judge3']){          
+          sleep(500).then(() => {
+            document.getElementById('judge1').style.backgroundColor = '#919191';
+            document.getElementById('judge2').style.backgroundColor = '#919191';
+            document.getElementById('judge3').style.backgroundColor = '#919191';
+            for (let x in sent_commands){
+              sent_commands[x] = false
+            }
+          });
+        }
       });
     </script>
   </body>
