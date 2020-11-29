@@ -1,48 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>9 FOR 9 LIGHTBOX</title>
-    <link rel="stylesheet" href="css/main.css"/>
-    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-  </head>
-  <body>
-    <h1>9 For 9 Light Box</h1>
-    <div class="container">
-        <span id="judge1" class="dot"></span>
-        <span id="judge2" class="dot"></span>
-        <span id="judge3" class="dot"></span>
-    </div>
-    <script>
-      // sleep function
-      function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+
+<head>
+  <meta charset="UTF-8">
+  <title>9 FOR 9 LIGHTBOX</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+<body>
+  <h1>9 For 9 Light Box</h1>
+  <div class="container">
+    <span id="judge1" class="dot"></span>
+    <span id="judge2" class="dot"></span>
+    <span id="judge3" class="dot"></span>
+  </div>
+  <script>
+    // escape full screen
+    const remote = require("electron").remote;
+
+    document.addEventListener("keydown", event => {
+      switch (event.key) {
+        case "Escape":
+          if (remote.getCurrentWindow().isFullScreen()) {
+            remote.getCurrentWindow().setFullScreen(false);
+          }
+          break;
       }
-      var sent_commands = {'judge1': false, 'judge2': false, 'judge3': false}
-      const ipcRenderer = require('electron').ipcRenderer;
-      ipcRenderer.on('incoming_data', function(event, incoming_data) { 
-        console.log(event);
-        dic = JSON.parse(incoming_data);
-        console.log(dic.judge_id);
-        sent_commands['judge' + dic.judge_id] = true;
-        if (dic.is_good_from_judge){
-          document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'white';
-        } else {
-          document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'red';
-        }
-        // check if all judges have sent their lights
-        if (sent_commands['judge1'] && sent_commands['judge2'] && sent_commands['judge3']){          
-          sleep(500).then(() => {
-            document.getElementById('judge1').style.backgroundColor = '#919191';
-            document.getElementById('judge2').style.backgroundColor = '#919191';
-            document.getElementById('judge3').style.backgroundColor = '#919191';
-            for (let x in sent_commands){
-              sent_commands[x] = false
-            }
-          });
-        }
-      });
-    </script>
-  </body>
+    });
+    // sleep function
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    var sent_commands = { 'judge1': false, 'judge2': false, 'judge3': false }
+    const ipcRenderer = require('electron').ipcRenderer;
+    ipcRenderer.on('incoming_data', function (event, incoming_data) {
+      console.log(event);
+      dic = JSON.parse(incoming_data);
+      console.log(dic.judge_id);
+      sent_commands['judge' + dic.judge_id] = true;
+      if (dic.is_good_from_judge) {
+        document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'white';
+      } else {
+        document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'red';
+      }
+      // check if all judges have sent their lights
+      if (sent_commands['judge1'] && sent_commands['judge2'] && sent_commands['judge3']) {
+        sleep(500).then(() => {
+          document.getElementById('judge1').style.backgroundColor = '#919191';
+          document.getElementById('judge2').style.backgroundColor = '#919191';
+          document.getElementById('judge3').style.backgroundColor = '#919191';
+          for (let x in sent_commands) {
+            sent_commands[x] = false
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
 </html>

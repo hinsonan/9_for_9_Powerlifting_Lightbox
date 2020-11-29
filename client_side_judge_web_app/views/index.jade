@@ -1,5 +1,20 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    nav
+      .nav-wrapper
+        a.brand-logo(href='#') Logo
+          
+    div.group_btns
+      .row
+      .col.s12.center
+        a(class='waves-effect waves-light btn-large' href='/judge/1')
+          | Left Judge
+      .row
+      .col.s12.center
+        a(class='waves-effect waves-light btn-large' href='/judge/2')
+          | Head Judge
+      .row
+      .col.s12.center
+        a(class='waves-effect waves-light btn-large' href='/judge/3')
+          | Right Judge
