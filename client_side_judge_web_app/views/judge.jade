@@ -26,7 +26,10 @@ block content
         });
 
 
-  div(class='btn_container')
-    button(class='good_lift lift_btn' onclick='is_good_lift("true")') Lift is Good
-
-    button(class='bad_lift lift_btn' onclick='is_good_lift("false")') Lift is Bad
+  div.group_btns
+      .row
+      .col.s12.center.col_spacing
+       button(class='waves-effect waves-light btn-large grey darken-2' onclick='is_good_lift("true")') Lift is Good
+      .row
+      .col.s12.center.col_spacing
+       button(class='waves-effect waves-light btn-large grey darken-2' onclick='is_good_lift("false")') Lift is Bad

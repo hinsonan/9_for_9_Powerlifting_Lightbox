@@ -5,16 +5,21 @@
   <meta charset="UTF-8">
   <title>9 FOR 9 LIGHTBOX</title>
   <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/materialize.min.css" />
+  <link rel="stylesheet" href="js/materialize.min.js" />
   <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
 
 <body>
-  <h1>9 For 9 Light Box</h1>
-  <div class="container">
+  <h2 class='center'>9 For 9 Light Box</h2>
+  <div class="container1">
     <span id="judge1" class="dot"></span>
     <span id="judge2" class="dot"></span>
     <span id="judge3" class="dot"></span>
+  </div>
+  <div class='row'>
+  <h4 id='result_text' class='col s12 center hidden'>test</h4>
   </div>
   <script>
     // escape full screen
@@ -33,7 +38,22 @@
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
-    
+
+    // determine if the results are a good or bad lift
+    function determine_lift_status(dic){
+      count_good = 0
+      count_bad = 0
+      for (let x in dic){
+        if (dic[x] == 1){
+          count_good += 1
+        }
+        else{
+          count_bad +=1
+        }
+      }
+      return ((count_good > count_bad) ? true : false)
+    }
+    var RESULTS = {'judge1': -1, 'judge2': -1, 'judge3': -1}
     var sent_commands = { 'judge1': false, 'judge2': false, 'judge3': false }
     const ipcRenderer = require('electron').ipcRenderer;
     ipcRenderer.on('incoming_data', function (event, incoming_data) {
@@ -41,20 +61,35 @@
       dic = JSON.parse(incoming_data);
       console.log(dic.judge_id);
       sent_commands['judge' + dic.judge_id] = true;
+
       if (dic.is_good_from_judge) {
         document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'white';
+        RESULTS['judge' + dic.judge_id] = 1
       } else {
         document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'red';
+        RESULTS['judge' + dic.judge_id] = 0
       }
       // check if all judges have sent their lights
       if (sent_commands['judge1'] && sent_commands['judge2'] && sent_commands['judge3']) {
-        sleep(500).then(() => {
+        // Display Result
+        result = determine_lift_status(RESULTS)
+        if (result){
+          document.getElementById('result_text').textContent = 'LIFT IS GOOD'
+          document.getElementById('result_text').classList.remove('hidden')
+        }
+        else{
+          document.getElementById('result_text').textContent = 'LIFT IS BAD'
+          document.getElementById('result_text').classList.remove('hidden')
+        }
+        sleep(3000).then(() => {
           document.getElementById('judge1').style.backgroundColor = '#919191';
           document.getElementById('judge2').style.backgroundColor = '#919191';
           document.getElementById('judge3').style.backgroundColor = '#919191';
           for (let x in sent_commands) {
             sent_commands[x] = false
+            RESULTS[x] = -1
           }
+          document.getElementById('result_text').classList.add('hidden')
         });
       }
     });

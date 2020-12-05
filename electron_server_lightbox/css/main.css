@@ -11,7 +11,7 @@ html, body {margin:0;padding:0;height:100%;overflow: hidden;}
     margin-left: auto;
   }
 
-.container{
+.container1{
     display: grid;
     height: 70%;
     grid-template-columns: auto auto auto;
@@ -19,10 +19,19 @@ html, body {margin:0;padding:0;height:100%;overflow: hidden;}
     vertical-align: middle;
 }
 
-h1{
-  color: white;
+.hidden{
+  visibility: hidden;
+}
+
+#result_text{
+  margin-top: -100px;
+  color: #fafafa;
+}
+
+h2{
+  color: #fafafa;
 }
 
 body{
-  background-color: #2e0110;
+  background-color: #730303;
 }

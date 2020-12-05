@@ -1,14 +1,12 @@
-html, body {margin:0;padding:0;height:100%;}
+html, body {margin:0;padding:0;height:100%;background-color: #212121;}
+
+#judge_id{
+  color: #fafafa;
+}
 
 h1{
   text-align: center;
 
-}
-
-.btn_container{
-  text-align: center;
-  display: grid;
-  vertical-align: center;
 }
 
 .lift_btn{
@@ -30,5 +28,14 @@ a {
 }
 
 .group_btns{
-  margin-top: 100px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.col_spacing{
+  padding-bottom: 50px;
 }
