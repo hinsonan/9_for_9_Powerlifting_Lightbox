@@ -9,20 +9,6 @@ h1{
 
 }
 
-.lift_btn{
-  padding: 10px;
-  grid-column: 1;
-  width: 50%;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.bad_lift{
-  margin-top: 20px;
-}
-
 a {
   color: #00B7FF;
 }
@@ -43,6 +29,10 @@ a {
 .selection_text{
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.result_btns{
+  color: black !important
 }
 
 @media screen and (min-width: 100px) and (max-width: 1200px){
