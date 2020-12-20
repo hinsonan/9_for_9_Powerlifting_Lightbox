@@ -37,5 +37,21 @@ a {
 }
 
 .col_spacing{
-  padding-bottom: 50px;
+  padding-bottom: 150px;
+}
+
+.selection_text{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@media screen and (min-width: 100px) and (max-width: 1200px){
+  .judge_selection_btns, .result_btns{
+    font-size: 32px !important;
+    width: 500px;
+    height: 120px !important;
+  }
+  .selection_text{
+    margin-top: 35px;
+  }
 }
