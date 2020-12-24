@@ -6,7 +6,9 @@
   <title>9 FOR 9 LIGHTBOX</title>
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/materialize.min.css" />
-  <link rel="stylesheet" href="js/materialize.min.js" />
+  <script src="js/materialize.min.js"></script>
+  <script src="./js/lightbox_helpers.js"></script>
+  <script src="js/screen_escape.js"></script>
   <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
@@ -19,40 +21,11 @@
     <span id="judge3" class="dot"></span>
   </div>
   <div class='row'>
-  <h4 id='result_text' class='col s12 center hidden'>test</h4>
+    <h4 id='result_text' class='col s12 center hidden'>test</h4>
   </div>
   <script>
-    // escape full screen
-    const remote = require("electron").remote;
-
-    document.addEventListener("keydown", event => {
-      switch (event.key) {
-        case "Escape":
-          if (remote.getCurrentWindow().isFullScreen()) {
-            remote.getCurrentWindow().setFullScreen(false);
-          }
-          break;
-      }
-    });
-    // sleep function
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    // determine if the results are a good or bad lift
-    function determine_lift_status(dic){
-      count_good = 0
-      count_bad = 0
-      for (let x in dic){
-        if (dic[x] == 1){
-          count_good += 1
-        }
-        else{
-          count_bad +=1
-        }
-      }
-      return ((count_good > count_bad) ? true : false)
-    }
+    var lbh = require('./js/lightbox_helpers.js')
+    
     var RESULTS = {'judge1': -1, 'judge2': -1, 'judge3': -1}
     var sent_commands = { 'judge1': false, 'judge2': false, 'judge3': false }
     const ipcRenderer = require('electron').ipcRenderer;
@@ -72,7 +45,7 @@
       // check if all judges have sent their lights
       if (sent_commands['judge1'] && sent_commands['judge2'] && sent_commands['judge3']) {
         // Display Result
-        result = determine_lift_status(RESULTS)
+        result = lbh.determine_lift_status(RESULTS)
         if (result){
           document.getElementById('result_text').textContent = 'LIFT IS GOOD'
           document.getElementById('result_text').classList.remove('hidden')
@@ -81,7 +54,7 @@
           document.getElementById('result_text').textContent = 'LIFT IS BAD'
           document.getElementById('result_text').classList.remove('hidden')
         }
-        sleep(3000).then(() => {
+        lbh.sleep(8000).then(() => {
           document.getElementById('judge1').style.backgroundColor = '#919191';
           document.getElementById('judge2').style.backgroundColor = '#919191';
           document.getElementById('judge3').style.backgroundColor = '#919191';

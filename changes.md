@@ -1,7 +1,7 @@
 ## Client Issues
 
 ~~btn bigger on mobile screens~~
-lift btns be color coordinated
+~~lift btns be color coordinated~~
 ~~simple btn wording~~
 show the most recent result again
 on client show that judge sent their result

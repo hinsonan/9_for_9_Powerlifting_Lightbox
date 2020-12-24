@@ -7,8 +7,18 @@ block content
         const socket = new WebSocket("ws://localhost:1080");
         function parse_for_id(){
             var text = document.getElementById('judge_id').textContent;
-            split_strings = text.split(' ')
-            return split_strings[1][0]
+            split_strings = text.split(" ")
+            id = null
+            if (split_strings[0] === "Left"){
+                id = '1'
+            }
+            else if(split_strings[0] === "Head"){
+                id = '2'
+            }
+            else{
+                id = '3'
+            }
+            return id
         }
         var is_good_lift = function(value) {
             console.log('here')
