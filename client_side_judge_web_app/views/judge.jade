@@ -21,7 +21,6 @@ block content
             return id
         }
         var is_good_lift = function(value) {
-            console.log('here')
             var is_good = (value === 'true');
             var id = parse_for_id()
             socket.send(JSON.stringify({judge_id: id, is_good_from_judge: is_good}));

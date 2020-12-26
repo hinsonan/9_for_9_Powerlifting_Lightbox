@@ -19,12 +19,20 @@ function createWindow () {
   
   judge_ws.on('connection', function (w) {  
     w.on( 'message' , function (incoming_data)  {
+      if(incoming_data === "judge"){
+        judge_ws.clients.forEach(function each(client) {
+          if (client !== w && client.readyState === WebSocket.OPEN) {
+            client.send(incoming_data);
+          }
+        })
+      }
+      // w.send(incoming_data)
       console.log(incoming_data)
       win.webContents.send('incoming_data' , incoming_data);
     })  
     w.on('close', function() { 
-         console.log("Closed") 
-    })    
+      console.log("Closed") 
+    }) 
     w.send("Hello from port 1080")
   })
 

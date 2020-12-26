@@ -29,11 +29,13 @@
     var RESULTS = {'judge1': -1, 'judge2': -1, 'judge3': -1}
     var sent_commands = { 'judge1': false, 'judge2': false, 'judge3': false }
     const ipcRenderer = require('electron').ipcRenderer;
+    const socket = new WebSocket("ws://localhost:1080");
     ipcRenderer.on('incoming_data', function (event, incoming_data) {
       console.log(event);
       dic = JSON.parse(incoming_data);
       console.log(dic.judge_id);
       sent_commands['judge' + dic.judge_id] = true;
+      socket.send('judge')
 
       if (dic.is_good_from_judge) {
         document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'white';
