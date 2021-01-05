@@ -31,31 +31,28 @@
     const ipcRenderer = require('electron').ipcRenderer;
     const socket = new WebSocket("ws://localhost:1080");
     ipcRenderer.on('incoming_data', function (event, incoming_data) {
-      console.log(event);
       dic = JSON.parse(incoming_data);
-      console.log(dic.judge_id);
       sent_commands['judge' + dic.judge_id] = true;
-      socket.send('judge')
-
+      // turn the light a darker color
+      document.getElementById('judge' + dic.judge_id).style.backgroundColor = '#9c9199';
       if (dic.is_good_from_judge) {
-        document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'white';
         RESULTS['judge' + dic.judge_id] = 1
       } else {
-        document.getElementById('judge' + dic.judge_id).style.backgroundColor = 'red';
         RESULTS['judge' + dic.judge_id] = 0
       }
       // check if all judges have sent their lights
       if (sent_commands['judge1'] && sent_commands['judge2'] && sent_commands['judge3']) {
+        socket.send('results_in')
+        for(const [key, value] of Object.entries(RESULTS)){
+          if(value === 1){
+            document.getElementById(key).style.backgroundColor = 'white';
+          }
+          else{
+            document.getElementById(key).style.backgroundColor = 'red';
+          }
+        }
         // Display Result
         result = lbh.determine_lift_status(RESULTS)
-        if (result){
-          document.getElementById('result_text').textContent = 'LIFT IS GOOD'
-          document.getElementById('result_text').classList.remove('hidden')
-        }
-        else{
-          document.getElementById('result_text').textContent = 'LIFT IS BAD'
-          document.getElementById('result_text').classList.remove('hidden')
-        }
         lbh.sleep(8000).then(() => {
           document.getElementById('judge1').style.backgroundColor = '#919191';
           document.getElementById('judge2').style.backgroundColor = '#919191';

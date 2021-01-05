@@ -19,14 +19,13 @@ function createWindow () {
   
   judge_ws.on('connection', function (w) {  
     w.on( 'message' , function (incoming_data)  {
-      if(incoming_data === "judge"){
+      if(incoming_data === "results_in"){
         judge_ws.clients.forEach(function each(client) {
           if (client !== w && client.readyState === WebSocket.OPEN) {
             client.send(incoming_data);
           }
         })
       }
-      // w.send(incoming_data)
       console.log(incoming_data)
       win.webContents.send('incoming_data' , incoming_data);
     })  
