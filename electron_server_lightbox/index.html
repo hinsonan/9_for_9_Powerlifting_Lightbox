@@ -42,7 +42,7 @@
       }
       // check if all judges have sent their lights
       if (sent_commands['judge1'] && sent_commands['judge2'] && sent_commands['judge3']) {
-        socket.send('results_in')
+        socket.send('disable_btns')
         for(const [key, value] of Object.entries(RESULTS)){
           if(value === 1){
             document.getElementById(key).style.backgroundColor = 'white';
@@ -54,6 +54,7 @@
         // Display Result
         result = lbh.determine_lift_status(RESULTS)
         lbh.sleep(8000).then(() => {
+          socket.send('enable_btns')
           document.getElementById('judge1').style.backgroundColor = '#919191';
           document.getElementById('judge2').style.backgroundColor = '#919191';
           document.getElementById('judge3').style.backgroundColor = '#919191';

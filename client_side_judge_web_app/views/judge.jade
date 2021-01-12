@@ -32,6 +32,16 @@ block content
 
         socket.addEventListener('message', function (data) {
             console.log(data);
+            if (data.data === 'disable_btns'){
+                Array.from(document.querySelectorAll('.result_btns')).forEach(function(button) {
+                    button.classList.add('disabled')
+                });
+            }
+            else if (data.data === 'enable_btns'){
+                Array.from(document.querySelectorAll('.result_btns')).forEach(function(button) {
+                    button.classList.remove('disabled')
+                });
+            }
         });
 
 

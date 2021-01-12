@@ -35,6 +35,10 @@ a {
   color: black !important
 }
 
+.disabled{
+  pointer-events: none;
+}
+
 @media screen and (min-width: 100px) and (max-width: 1200px){
   .judge_selection_btns, .result_btns{
     font-size: 32px !important;
