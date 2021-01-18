@@ -25,10 +25,29 @@ block content
             var id = parse_for_id()
             socket.send(JSON.stringify({judge_id: id, is_good_from_judge: is_good}));
         }
-        // Connection opened
-        //- socket.addEventListener('open', function (event) {
-        //-     socket.send('Hello Server!');
-        //- });
+
+        var confirm = function(id){
+            if (id === 'good_lift_btn'){
+                // set the opposite button to hidden
+                var btn = document.getElementById('bad_lift_btn');
+                nodes = btn.childNodes;
+                nodes[1].style.visibility = "hidden";
+                // trigger checkmark for the btn pressed
+                btn = document.getElementById(id);
+                nodes = btn.childNodes;
+                nodes[1].style.visibility = "visible";
+            }
+            else{
+                // set the opposite button to hidden
+                var btn = document.getElementById('good_lift_btn');
+                nodes = btn.childNodes;
+                nodes[1].style.visibility = "hidden";
+                // trigger checkmark for the btn pressed
+                btn = document.getElementById(id);
+                nodes = btn.childNodes;
+                nodes[1].style.visibility = "visible";
+            }
+        }
 
         socket.addEventListener('message', function (data) {
             console.log(data);
@@ -41,6 +60,13 @@ block content
                 Array.from(document.querySelectorAll('.result_btns')).forEach(function(button) {
                     button.classList.remove('disabled')
                 });
+                // set checkmarks to hidden
+                var btn = document.getElementById('bad_lift_btn');
+                nodes = btn.childNodes;
+                nodes[1].style.visibility = "hidden";
+                btn = document.getElementById('good_lift_btn');
+                nodes = btn.childNodes;
+                nodes[1].style.visibility = "hidden";
             }
         });
 
@@ -48,7 +74,9 @@ block content
   div.group_btns
       .row
       .col.s12.center.col_spacing
-       button(class='waves-effect waves-dark btn-large white result_btns' onclick='is_good_lift("true")') Good
+       button(class='waves-effect waves-dark btn-large white result_btns' id="good_lift_btn" onclick='is_good_lift("true");confirm("good_lift_btn");') 
+        <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>Good</p>
       .row
       .col.s12.center.col_spacing
-       button(class='waves-effect waves-dark btn-large red result_btns' onclick='is_good_lift("false")') No Good
+       button(class='waves-effect waves-dark btn-large red result_btns' id="bad_lift_btn" onclick='is_good_lift("false");confirm("bad_lift_btn");') 
+        <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>No Good</p>
