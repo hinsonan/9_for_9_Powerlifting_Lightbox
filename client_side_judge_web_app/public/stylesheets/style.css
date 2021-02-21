@@ -32,7 +32,10 @@ a {
 }
 
 .result_btns{
-  color: black !important
+  color: black !important;
+  font-size: 16px !important;
+  width: 200px;
+  height: 80px !important;
 }
 
 .disabled{
@@ -40,8 +43,8 @@ a {
 }
 
 .checkmark{
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 20px;
   float: left;
   visibility: hidden;
   margin-top: 30px;
@@ -51,7 +54,7 @@ a {
   margin-right: 15px;
 }
 
-@media screen and (min-width: 100px) and (max-width: 1200px){
+@media screen and (hover: none) and (pointer: coarse){
   .judge_selection_btns, .result_btns{
     font-size: 32px !important;
     width: 500px;
@@ -59,5 +62,12 @@ a {
   }
   .selection_text{
     margin-top: 35px;
+  }
+  .checkmark{
+    width: 50px;
+    height: 50px;
+    float: left;
+    visibility: hidden;
+    margin-top: 30px;
   }
 }
