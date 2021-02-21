@@ -32,6 +32,10 @@ h2{
   color: #fafafa;
 }
 
+.logo{
+  height: 64px;
+}
+
 body{
   background-color: #212121;
 }

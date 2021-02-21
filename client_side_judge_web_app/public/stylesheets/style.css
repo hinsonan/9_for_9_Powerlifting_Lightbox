@@ -54,6 +54,10 @@ a {
   margin-right: 15px;
 }
 
+.logo{
+  height: 64px;
+}
+
 @media screen and (hover: none) and (pointer: coarse){
   .judge_selection_btns, .result_btns{
     font-size: 32px !important;
