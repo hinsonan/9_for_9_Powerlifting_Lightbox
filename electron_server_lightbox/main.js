@@ -11,7 +11,8 @@ function createWindow () {
     height: 600,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    icon: './images/9_For_9_Logo.png'
   })
 
   // and load the index.html of the app.
