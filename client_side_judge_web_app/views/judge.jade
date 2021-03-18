@@ -2,9 +2,20 @@ extends layout
 
 block content
   h1(id='judge_id') #{judge_id} Judge
-  
+
+  div.group_btns
+      .row
+      .col.s12.center.col_spacing
+       button(class='waves-effect waves-dark btn-large white result_btns' id="good_lift_btn" onclick='is_good_lift("true");confirm("good_lift_btn");') 
+        <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>Good</p>
+      .row
+      .col.s12.center.col_spacing
+       button(class='waves-effect waves-dark btn-large red result_btns' id="bad_lift_btn" onclick='is_good_lift("false");confirm("bad_lift_btn");') 
+        <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>No Good</p>
+
+
     script.
-        const socket = new WebSocket("ws://localhost:1080");
+        const socket = new WebSocket("ws://" + location.hostname + ":1080");
         function parse_for_id(){
             var text = document.getElementById('judge_id').textContent;
             split_strings = text.split(" ")
@@ -69,14 +80,3 @@ block content
                 nodes[1].style.visibility = "hidden";
             }
         });
-
-
-  div.group_btns
-      .row
-      .col.s12.center.col_spacing
-       button(class='waves-effect waves-dark btn-large white result_btns' id="good_lift_btn" onclick='is_good_lift("true");confirm("good_lift_btn");') 
-        <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>Good</p>
-      .row
-      .col.s12.center.col_spacing
-       button(class='waves-effect waves-dark btn-large red result_btns' id="bad_lift_btn" onclick='is_good_lift("false");confirm("bad_lift_btn");') 
-        <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>No Good</p>
