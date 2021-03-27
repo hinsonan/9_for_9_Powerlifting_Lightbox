@@ -2,8 +2,8 @@ html, body {margin:0;padding:0;height:100%;overflow: hidden;}
 
 
 .dot {
-    height: 10vw;
-    width: 15vh;
+    height: 15vw;
+    width: 25vh;
     background-color: #919191;
     border-radius: 50%;
     display: inline-block;
