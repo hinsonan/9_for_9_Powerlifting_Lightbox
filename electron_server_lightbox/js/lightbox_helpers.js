@@ -18,3 +18,47 @@ module.exports.sleep = function(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// timer interval
+module.exports.timer = function(duration, display){
+  var seconds = parseInt(duration)
+  let countdown = setInterval(function(){
+    seconds -= 1;
+    // keep the text formatting standard
+    switch(seconds){
+      case 9:
+        display.textContent = "09s";
+        break;
+      case 8:
+        display.textContent = "08s";
+        break;
+      case 7:
+        display.textContent = "07s";
+        break;
+      case 6:
+        display.textContent = "06s";
+        break;
+      case 5:
+        display.textContent = "05s";
+        break;
+      case 4:
+        display.textContent = "04s";
+        break;
+      case 3:
+        display.textContent = "03s";
+        break;
+      case 2:
+        display.textContent = "02s";
+        break;
+      case 1:
+        display.textContent = "01s";
+        break;
+      case 0:
+        display.textContent = "00s";
+        clearInterval(countdown)
+        break;
+      default:
+        display.textContent = seconds + "s";
+        break;
+    }
+  }, 1000)
+}

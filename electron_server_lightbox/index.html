@@ -28,8 +28,13 @@
   <div class='row'>
     <h4 id='result_text' class='col s12 center hidden'>test</h4>
   </div>
+  <div>
+    <h2 id='timer' class="col s12 center">60s</h2>
+  </div>
   <script>
     var lbh = require('./js/lightbox_helpers.js')
+
+    lbh.timer("60", document.getElementById('timer'));
     
     var RESULTS = {'judge1': -1, 'judge2': -1, 'judge3': -1}
     var sent_commands = { 'judge1': false, 'judge2': false, 'judge3': false }

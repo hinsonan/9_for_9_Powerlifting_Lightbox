@@ -54,6 +54,11 @@ a {
   margin-right: 15px;
 }
 
+.bar_loaded_text{
+  font-size: 24px;
+  margin-top: 0px;
+}
+
 .logo{
   height: 64px;
 }

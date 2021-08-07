@@ -12,9 +12,23 @@ block content
       .col.s12.center.col_spacing
        button(class='waves-effect waves-dark btn-large red result_btns' id="bad_lift_btn" onclick='is_good_lift("false");confirm("bad_lift_btn");') 
         <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>No Good</p>
+      .row
+      .col.s1.center
+      button(class='waves-effect waves-dark btn-small' id="bars_loaded") 
+        <p class='bar_loaded_text'>Bars Loaded</p>
+
 
 
     script.
+        // hide the bars loaded button except for on head judge
+        if (document.getElementById('judge_id').textContent !== 'Head Judge'){
+            document.getElementById('bars_loaded').classList.add('hide')
+        }
+        else{
+            document.getElementById('bars_loaded').classList.remove('hide')
+        }
+
+        // init the socket
         const socket = new WebSocket("ws://" + location.hostname + ":1080");
         function parse_for_id(){
             var text = document.getElementById('judge_id').textContent;
