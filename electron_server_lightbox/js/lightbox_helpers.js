@@ -20,7 +20,8 @@ module.exports.sleep = function(ms) {
 
 // timer interval
 module.exports.timer = function(duration, display){
-  var seconds = parseInt(duration)
+  display.textContent = duration + "s";
+  var seconds = parseInt(duration);
   let countdown = setInterval(function(){
     seconds -= 1;
     // keep the text formatting standard

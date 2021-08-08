@@ -29,22 +29,23 @@
     <h4 id='result_text' class='col s12 center hidden'>test</h4>
   </div>
   <div>
-    <h2 id='timer' class="col s12 center">60s</h2>
+    <h2 id='timer' class="col s12 center hidden">60s</h2>
   </div>
   <script>
     var lbh = require('./js/lightbox_helpers.js')
-
-    lbh.timer("60", document.getElementById('timer'));
-    
+    // GLOBALS
+    var timer_is_active = false;
     var RESULTS = {'judge1': -1, 'judge2': -1, 'judge3': -1}
     var sent_commands = { 'judge1': false, 'judge2': false, 'judge3': false }
     const ipcRenderer = require('electron').ipcRenderer;
     const socket = new WebSocket("ws://localhost:1080");
+    // socket messages get sent to this
+    // listen for judge messages
     ipcRenderer.on('incoming_data', function (event, incoming_data) {
       dic = JSON.parse(incoming_data);
       sent_commands['judge' + dic.judge_id] = true;
       // turn the light a darker color
-      document.getElementById('judge' + dic.judge_id).style.backgroundColor = '#9c9199';
+      document.getElementById('judge' + dic.judge_id).style.backgroundColor = '#4a374d';
       if (dic.is_good_from_judge) {
         RESULTS['judge' + dic.judge_id] = 1
       } else {
@@ -75,6 +76,12 @@
           document.getElementById('result_text').classList.add('hidden')
         });
       }
+    });
+    // listen for timer events
+    ipcRenderer.on('timer', function (event, incoming_data) {
+      let timer = document.getElementById('timer');
+      timer.classList.remove('hidden');
+      lbh.timer("60", document.getElementById('timer'));
     });
   </script>
 </body>

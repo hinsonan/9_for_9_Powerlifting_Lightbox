@@ -20,6 +20,7 @@ function createWindow () {
   
   judge_ws.on('connection', function (w) {  
     w.on( 'message' , function (incoming_data)  {
+      // check if the message is suppose to go to the web app client to disable or enable the judge btns
       if(incoming_data === "disable_btns" || incoming_data === 'enable_btns'){
         judge_ws.clients.forEach(function each(client) {
           if (client !== w && client.readyState === WebSocket.OPEN) {
@@ -27,9 +28,14 @@ function createWindow () {
           }
         });
       }
+      // listen for messages going to the lightbox
       else{
-        console.log(incoming_data)
-        win.webContents.send('incoming_data' , incoming_data);
+        if ("timer" in JSON.parse(incoming_data)){
+          win.webContents.send('timer' , incoming_data);
+        }
+        else{
+          win.webContents.send('incoming_data' , incoming_data);
+        }
       }
     })  
     w.on('close', function() { 

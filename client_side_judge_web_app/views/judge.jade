@@ -14,7 +14,7 @@ block content
         <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>No Good</p>
       .row
       .col.s1.center
-      button(class='waves-effect waves-dark btn-small' id="bars_loaded") 
+      button(class='waves-effect waves-dark btn-small' id="bars_loaded" onclick='trigger_bar_is_loaded();') 
         <p class='bar_loaded_text'>Bars Loaded</p>
 
 
@@ -72,6 +72,10 @@ block content
                 nodes = btn.childNodes;
                 nodes[1].style.visibility = "visible";
             }
+        }
+
+        var trigger_bar_is_loaded = function(){
+            socket.send(JSON.stringify({timer: "60"}));
         }
 
         socket.addEventListener('message', function (data) {
