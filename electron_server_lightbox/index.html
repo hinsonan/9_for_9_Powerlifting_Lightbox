@@ -79,12 +79,16 @@
     });
     // listen for timer events
     ipcRenderer.on('timer', function (event, incoming_data) {
+      // get the timer html 
       let timer = document.getElementById('timer');
       timer.classList.remove('hidden');
       seconds = 60;
+      // if the timer is active and the judge pressed the btn
+      // then kill the ongoing countdown
       if(timer_is_active){
         clearInterval(countdown);
       }
+      // start the interval function to countdown the time
       let countdown = setInterval(function(){
         timer_is_active = true;
         lbh.timer(seconds, document.getElementById('timer'))
