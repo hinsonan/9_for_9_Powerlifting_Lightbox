@@ -81,7 +81,19 @@
     ipcRenderer.on('timer', function (event, incoming_data) {
       let timer = document.getElementById('timer');
       timer.classList.remove('hidden');
-      lbh.timer("60", document.getElementById('timer'));
+      seconds = 60;
+      if(timer_is_active){
+        clearInterval(countdown);
+      }
+      let countdown = setInterval(function(){
+        timer_is_active = true;
+        lbh.timer(seconds, document.getElementById('timer'))
+        if (seconds === 0){
+          timer_is_active = false;
+          clearInterval(countdown);
+        }
+        seconds -= 1;
+      }, 1000);      
     });
   </script>
 </body>
