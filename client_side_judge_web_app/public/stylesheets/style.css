@@ -54,6 +54,10 @@ a {
   margin-right: 15px;
 }
 
+#bars_loaded{
+  background-color: rgb(121, 118, 118);
+}
+
 .bar_loaded_text{
   font-size: 24px;
   margin-top: 0px;
