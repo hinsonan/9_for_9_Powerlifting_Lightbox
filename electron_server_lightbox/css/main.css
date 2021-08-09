@@ -23,17 +23,16 @@ html, body {margin:0;padding:0;height:100%;overflow: hidden;}
   visibility: hidden;
 }
 
-#result_text{
-  margin-top: -100px;
-  color: #fafafa;
-}
-
 h2{
   color: #fafafa;
 }
 
 .logo{
   height: 64px;
+}
+
+#timer{
+  border:2px dashed yellow;
 }
 
 body{
