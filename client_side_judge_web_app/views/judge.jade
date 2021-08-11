@@ -7,11 +7,11 @@ block content
       .row
       .col.s12.center.col_spacing
        button(class='waves-effect waves-dark btn-large white result_btns' id="good_lift_btn" onclick='is_good_lift("true");confirm("good_lift_btn");') 
-        <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>Good</p>
+        <p class='judge_btn_text'>Good</p>
       .row
       .col.s12.center.col_spacing
        button(class='waves-effect waves-dark btn-large red result_btns' id="bad_lift_btn" onclick='is_good_lift("false");confirm("bad_lift_btn");') 
-        <img src='/images/checkmark.png' class='checkmark'/> <p class='judge_btn_text'>No Good</p>
+        <p class='judge_btn_text'>No Good</p>
       .row
       .col.s1.center
       button(class='waves-effect waves-dark btn-small' id="bars_loaded" onclick='trigger_bar_is_loaded();') 
@@ -55,22 +55,18 @@ block content
             if (id === 'good_lift_btn'){
                 // set the opposite button to hidden
                 var btn = document.getElementById('bad_lift_btn');
-                nodes = btn.childNodes;
-                nodes[1].style.visibility = "hidden";
+                btn.style.border = '0px solid yellow';
                 // trigger checkmark for the btn pressed
                 btn = document.getElementById(id);
-                nodes = btn.childNodes;
-                nodes[1].style.visibility = "visible";
+                btn.style.border = '3px solid yellow';
             }
             else{
                 // set the opposite button to hidden
                 var btn = document.getElementById('good_lift_btn');
-                nodes = btn.childNodes;
-                nodes[1].style.visibility = "hidden";
+                btn.style.border = '0px solid yellow';
                 // trigger checkmark for the btn pressed
                 btn = document.getElementById(id);
-                nodes = btn.childNodes;
-                nodes[1].style.visibility = "visible";
+                btn.style.border = '3px solid yellow';
             }
         }
 
@@ -91,10 +87,8 @@ block content
                 });
                 // set checkmarks to hidden
                 var btn = document.getElementById('bad_lift_btn');
-                nodes = btn.childNodes;
-                nodes[1].style.visibility = "hidden";
+                btn.style.border = '0px solid yellow';
                 btn = document.getElementById('good_lift_btn');
-                nodes = btn.childNodes;
-                nodes[1].style.visibility = "hidden";
+                btn.style.border = '0px solid yellow';
             }
         });
