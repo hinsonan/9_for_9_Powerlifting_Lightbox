@@ -13,6 +13,12 @@ a {
   color: #00B7FF;
 }
 
+.judge_btn_text{
+  font-size: 26px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .group_btns{
   margin: 0;
   position: absolute;
