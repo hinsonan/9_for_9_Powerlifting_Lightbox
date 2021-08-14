@@ -15,6 +15,6 @@ This application is meant to be installed onto a single machine. The application
 
 3) open web browser and go to localhost:3000
 
-4) Users that are connected to the LAN can type in the IP address and port they see on the screen
+4) Users that are connected to the LAN can type in the IP address and port they see on the screen on any web mobile web browser
 
 5) You are all set. feel free to close the web browser once the judges get connected and resize the lightbox to be the size you want.
