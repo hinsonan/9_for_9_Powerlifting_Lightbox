@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "start": "(cd electron_server_lightbox && npm start) & (cd client_side_judge_web_app && npm start)",
+        "install": "(cd electron_server_lightbox && npm install) & (cd client_side_judge_web_app && npm install)"
+    }
+}
