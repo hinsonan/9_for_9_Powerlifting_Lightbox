@@ -19,6 +19,15 @@ a {
   margin-bottom: auto;
 }
 
+.group_btns_judge_select{
+  margin: 0;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .group_btns{
   margin: 0;
   position: absolute;
@@ -75,22 +84,31 @@ a {
 
 @media screen and (hover: none) and (pointer: coarse){
   .judge_selection_btns, .result_btns{
-    font-size: 32px !important;
     width: 500px;
-    height: 120px !important;
+    height: 200px !important;
+    line-height: initial;
+  }
+  .judge_btn_text{
+    font-size: 60px;
   }
   .selection_text{
-    margin-top: 35px;
+    font-size: 60px;
+    height: 100%;
+    margin-top: revert;
+    margin-bottom: revert;
   }
-  .checkmark{
-    width: 50px;
-    height: 50px;
-    float: left;
-    visibility: hidden;
-    margin-top: 30px;
+  .group_btns_judge_select{
+    top: 55vh;
   }
-
   .group_btns{
     top: 50%;
+  }
+  #bars_loaded{
+    height: 150px;
+    width: 350px;
+  }  
+  .bar_loaded_text{
+    font-size: 40px;
+    margin-top: revert;
   }
 }

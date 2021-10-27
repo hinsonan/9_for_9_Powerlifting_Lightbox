@@ -2,17 +2,17 @@ extends layout
 
 block content
     h1(id='localIP') #{local_ip}:3000       
-    div.group_btns
+    div.group_btns_judge_select
       .row
       .col.s12.center.col_spacing
         a(class='waves-effect waves-light btn-large grey darken-2 judge_selection_btns' href='/judge/Left')
           p.selection_text
-          |  Left Judge
+            |  Left Judge
       .row
       .col.s12.center.col_spacing
         a(class='waves-effect waves-light btn-large grey darken-2 judge_selection_btns' href='/judge/Head')
           p.selection_text
-          |  Head Judge
+            |  Head Judge
       .row
       .col.s12.center.col_spacing
         a(class='waves-effect waves-light btn-large grey darken-2 judge_selection_btns' href='/judge/Right')
