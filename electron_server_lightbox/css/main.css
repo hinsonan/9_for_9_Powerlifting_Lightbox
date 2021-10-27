@@ -12,8 +12,8 @@ html, body {margin:0;padding:0;height:100%;overflow: hidden;}
   }
 
 .square{
-  height: 25vw;
-  width: 25vh;
+  height: 15vw;
+  width: 15vw;
   background-color: #919191;
   display: inline-block;
   margin-right: auto;
