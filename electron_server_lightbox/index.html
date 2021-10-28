@@ -26,12 +26,13 @@
     <span id="judge3" class="dot"></span>
   </div>
   <div class='row'>
-    <h2 id='timer' class="col s6 center hidden offset-s3">60s</h2>
+    <h2 id='timer' class="hidden">60s</h2>
   </div>
   <script>
     var lbh = require('./js/lightbox_helpers.js')
     // GLOBALS
     var timer_is_active = false;
+    var stop_recieving_judge_messages = false;
     var RESULTS = {'judge1': -1, 'judge2': -1, 'judge3': -1}
     var sent_commands = { 'judge1': false, 'judge2': false, 'judge3': false }
     const ipcRenderer = require('electron').ipcRenderer;
@@ -42,14 +43,16 @@
       dic = JSON.parse(incoming_data);
       sent_commands['judge' + dic.judge_id] = true;
       // turn the light a darker color
-      document.getElementById('judge' + dic.judge_id).style.backgroundColor = '#4a374d';
+      if (!stop_recieving_judge_messages){
+        document.getElementById('judge' + dic.judge_id).style.backgroundColor = '#4a374d';
+      }
       if (dic.is_good_from_judge) {
         RESULTS['judge' + dic.judge_id] = 1
       } else {
         RESULTS['judge' + dic.judge_id] = 0
       }
       // check if all judges have sent their lights
-      if (sent_commands['judge1'] && sent_commands['judge2'] && sent_commands['judge3']) {
+      if (sent_commands['judge1'] && sent_commands['judge2'] && sent_commands['judge3'] && !stop_recieving_judge_messages) {
         socket.send('disable_btns')
         for(const [key, value] of Object.entries(RESULTS)){
           if(value === 1){
@@ -61,9 +64,10 @@
           document.getElementById(key).classList.remove('dot');
           document.getElementById(key).classList.add('square');
         }
+        stop_recieving_judge_messages = true;
         // Display Result
         result = lbh.determine_lift_status(RESULTS)
-        lbh.sleep(8000).then(() => {
+        lbh.sleep(15000).then(() => {
           socket.send('enable_btns')
           document.getElementById('judge1').style.backgroundColor = '#919191';
           document.getElementById('judge2').style.backgroundColor = '#919191';
@@ -80,6 +84,8 @@
           document.getElementById('judge1').classList.add('dot');
           document.getElementById('judge2').classList.add('dot');
           document.getElementById('judge3').classList.add('dot');
+
+          stop_recieving_judge_messages = false
         });
       }
     });

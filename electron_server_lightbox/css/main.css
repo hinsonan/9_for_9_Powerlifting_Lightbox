@@ -3,7 +3,7 @@ html, body {margin:0;padding:0;height:100%;overflow: hidden;}
 
 .dot {
     height: 15vw;
-    width: 20vh;
+    width: 15vw;
     background-color: #919191;
     border-radius: 50%;
     display: inline-block;
@@ -42,6 +42,10 @@ h2{
 
 #timer{
   border:2px dashed yellow;
+  width: 20vw;
+  margin:auto;
+  font-size: 450%;
+  text-align: center;
 }
 
 body{
