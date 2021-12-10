@@ -14,7 +14,7 @@ a {
 }
 
 .judge_btn_text{
-  font-size: 26px;
+  font-size: 52px;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -42,14 +42,15 @@ a {
 }
 
 .selection_text{
-  margin-top: auto;
-  margin-bottom: auto;
+  height: 100%;
+  margin-top: 22px;
+  font-size: 52px;
 }
 
 .result_btns{
   color: black !important;
   font-size: 16px !important;
-  width: 200px;
+  width: 500px;
   height: 80px !important;
 }
 
@@ -67,11 +68,12 @@ a {
 
 #bars_loaded{
   background-color: rgb(121, 118, 118);
+  width: 300px !important;
+  height: 100px;
 }
 
 .bar_loaded_text{
-  font-size: 24px;
-  margin-top: 0px;
+  font-size: 35px;
 }
 
 .logo{
@@ -80,6 +82,11 @@ a {
 
 #localIP{
   color: white;
+}
+
+.judge_selection_btns{
+  width: 500px;
+  height: 100px !important;
 }
 
 @media screen and (hover: none) and (pointer: coarse){
