@@ -3,23 +3,55 @@ powerlifting lightbox
 
 This applicaton is meant to give powerlifting competitions an easy to use electronic lightbox. Gone are the days of wires and physical lights. 9 for 9 LightBox is the only open source lightbox around.
 
+## Dependencies
+
+This program requires Node.js and npm (node package manager)
+
+### Debian based distros
+`sudo apt install nodejs npm`
+
+### Arch based distros
+`sudo pacman -S nodejs npm`
+
+### Red Hat based distros
+`sudo dnf install nodejs npm`
+
+### Mircosoft Windows
+If you choose to use windows then you must go download node and npm installer from here https://nodejs.org/en/download/
+
+I would reccomend the 64-bit Windows Installer (.msi)
+
 ## How to Use
 
 This application is meant to be installed onto a single machine. The application will run a web server and a desktop app. Using the judges phones or other devices the judge can connect to the LAN and use this app. This app does not require internet but does require a local network to communicate with.
 
-1) Install the application (This step requires internet connection to download dependencies)
+1) Download the project. This can be done many ways.
+    
+    `git clone https://github.com/hinsonan/9_for_9_Powerlifting_Lightbox.git`
+
+    or go to https://github.com/hinsonan/9_for_9_Powerlifting_Lightbox/releases and download the latest source code. Extract the zip contents to a destination on your computer. (Note: The releases may run behind the master branch but should be more stable)
+
+2) Change directory to project folder: `cd 9_for_9_Powerlifting_Lightbox`
+
+3) Install the application (This step requires internet connection to download dependencies)
 
     `npm install`
 
-2) Run the Application
+4) Run the Application
 
     `npm start`
 
-3) open web browser and go to localhost:3000
+    The lightbox should pop up looking like this
+    ![lightbox](docs/lightbox.png "lightbox")
 
-4) Users that are connected to the LAN can type in the IP address and port they see on the screen on any web mobile web browser
+5) open web browser and go to localhost:3000
 
-5) You are all set. feel free to close the web browser once the judges get connected and resize the lightbox to be the size you want.
+    The client local website should appear. Layout may look different on mobile devices.
+    ![client](docs/client.png "client website")
+
+6) Users that are connected to the LAN can type in the IP address and port they see on the screen on any mobile web browser
+
+7) You are all set. feel free to close the web browser once the judges get connected and resize the lightbox to be the size you want. Pro tip F11 will full screen the lightbox.
 
 ## Donate
 
