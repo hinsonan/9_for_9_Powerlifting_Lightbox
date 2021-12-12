@@ -1,7 +1,7 @@
 # 9 for 9 Powerlifting Lightbox
 powerlifting lightbox
 
-This applicaton is meant to give powerlifting competitions an easy to use electronic lightbox. Gone are the days of wires and physical lights. 9 for 9 LightBox is the only open source lightbox around.
+This applicaton is meant to give powerlifting competitions an easy to use electronic lightbox. Gone are the days of wires and physical lights. 9 for 9 Powerlifting Lightbox is the only open source lightbox around.
 
 ## Dependencies
 
