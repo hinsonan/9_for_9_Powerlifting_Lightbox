@@ -42,6 +42,9 @@
     ipcRenderer.on('incoming_data', function (event, incoming_data) {
       dic = JSON.parse(incoming_data);
       sent_commands['judge' + dic.judge_id] = true;
+      // hide the timer when a judge gives their input
+      let timer = document.getElementById('timer');
+      timer.classList.add('hidden');
       // turn the light a darker color
       if (!stop_recieving_judge_messages){
         document.getElementById('judge' + dic.judge_id).style.backgroundColor = '#4a374d';
@@ -93,6 +96,7 @@
     ipcRenderer.on('timer', function (event, incoming_data) {
       // get the timer html 
       let timer = document.getElementById('timer');
+      timer.textContent = '60s';
       timer.classList.remove('hidden');
       seconds = 60;
       // if the timer is active and the judge pressed the btn
