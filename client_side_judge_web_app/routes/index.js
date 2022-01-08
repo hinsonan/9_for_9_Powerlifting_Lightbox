@@ -30,4 +30,8 @@ router.get('/judge/:id', function(req, res, next) {
   res.render('judge', { judge_id: req.params['id']});
 });
 
+router.get('/settings', function(req, res, next) {
+  res.render('settings');
+});
+
 module.exports = router;
