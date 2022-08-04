@@ -106,12 +106,3 @@ This application is meant to be installed onto a single machine. The application
 If you enjoy this product I would greatly appreciate a donation of any amount. This code and program is free and open source, however food on the table is not.
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?business=59D6FWDV8WKUQ&no_recurring=0&item_name=I+appreciate+your+donation+to+a+local+developer+and+greatly+appreciate+your+support+for+free+and+open-source+software&currency_code=USD)
-
-### Crypto Donate Options
-
-#### Bitcoin (BTC)
-[![Donate with Bitcoin](https://en.cryptobadges.io/badge/big/3HrFPqqFFxuDfQeEWsAzdCHDtjzegqzuAN)](https://en.cryptobadges.io/donate/3HrFPqqFFxuDfQeEWsAzdCHDtjzegqzuAN)
-
-#### Ethereum (ETH)
-
-[![Donate with Ethereum](https://en.cryptobadges.io/badge/big/0x0FeDD207837D33445187587B5042a606ad1a7142)](https://en.cryptobadges.io/donate/0x0FeDD207837D33445187587B5042a606ad1a7142)
